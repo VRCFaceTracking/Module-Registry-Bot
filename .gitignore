@@ -1,0 +1,21 @@
+# .gitignore
+
+# Ignore IntelliJ IDEA project files
+.idea/*
+
+# Ignore TypeScript compiler output directory
+dist/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore all log files
+*.log
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore package lock files
+yarn.lock
+package-lock.json
