@@ -17,13 +17,12 @@
  * guild_locale?  string  Guild's preferred locale, if invoked in a guild
  */
 import { InteractionType } from './interactionType';
-import InteractionData from './applicationCommandInteractionData';
 import GuildMember from '../guildMember';
 import User from '../user';
 import Message from '../outgoing/message';
 
 export default class Interaction {
-  public id: number;
+  public id: string;
   public applicationId: string;
   public type: InteractionType;
   public data?: any;

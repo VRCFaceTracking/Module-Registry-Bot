@@ -1,11 +1,13 @@
 import AWS from 'aws-sdk';
+import ModuleMetadata from './moduleMetadata';
+import { Converter } from 'aws-sdk/clients/dynamodb';
 
-class ModuleRegistry {
-  private dynamoDb: AWS.DynamoDB.DocumentClient;
+export default class ModuleRegistry {
+  private dynamoDb: AWS.DynamoDB;
 
-  ModuleRegistry() {
+  constructor() {
     AWS.config.update({ region: 'us-east-1' });
-    this.dynamoDb = new AWS.DynamoDB.DocumentClient();
+    this.dynamoDb = new AWS.DynamoDB();
   }
 
   async GetAllModules(): Promise<ModuleMetadata[]> {
@@ -15,20 +17,37 @@ class ModuleRegistry {
       })
       .promise();
 
-    return data.Items as ModuleMetadata[];
+    return data.Items?.map(
+      (item) => Converter.unmarshall(item) as ModuleMetadata,
+    );
   }
 
-  async GetAllOwnedModules(ownerId: number): Promise<ModuleMetadata[]> {
+  async GetAllOwnedModules(ownerId: string): Promise<ModuleMetadata[]> {
     const data = await this.dynamoDb
       .scan({
         FilterExpression: 'OwnerId = :ownerId',
         ExpressionAttributeValues: {
-          ':ownerId': { N: ownerId },
+          ':ownerId': { S: ownerId },
         },
         TableName: 'VRCFT-Module-Entries',
       })
       .promise();
 
-    return data.Items as ModuleMetadata[];
+    return data.Items?.map(
+      (item) => Converter.unmarshall(item) as ModuleMetadata,
+    );
+  }
+
+  async GetModule(moduleId: string): Promise<ModuleMetadata> {
+    const data = await this.dynamoDb
+      .getItem({
+        TableName: 'VRCFT-Module-Entries',
+        Key: {
+          ModuleId: { S: moduleId },
+        },
+      })
+      .promise();
+
+    return Converter.unmarshall(data.Item) as ModuleMetadata;
   }
 }

@@ -1,6 +1,7 @@
 import InteractionResponse from '../outgoing/interactionResponse';
 import Interaction from '../incoming/interaction';
 import ModalSubmit from '../incoming/modalSubmit';
+import { InteractionCallbackType } from '../outgoing/interactionCallbackType';
 
 export default class ModalSubmissionHandler {
   static async handleInteraction(
@@ -8,5 +9,6 @@ export default class ModalSubmissionHandler {
   ): Promise<InteractionResponse> {
     const data = new ModalSubmit(interaction.data);
     // TODO
+    return new InteractionResponse(InteractionCallbackType.Pong);
   }
 }

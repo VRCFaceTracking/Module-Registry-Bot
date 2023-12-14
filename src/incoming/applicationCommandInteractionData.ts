@@ -11,7 +11,7 @@
 import InteractionDataOption from './interactionDataOption';
 
 export default class ApplicationCommandInteractionData {
-  public id: number;
+  public id: string;
   public name: string;
   public type: number;
   public resolved?: any;

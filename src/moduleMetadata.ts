@@ -1,4 +1,4 @@
-interface ModuleMetadata {
+export default interface ModuleMetadata {
   ModuleId: string;
   AuthorName: string;
   DllFileName: string;
@@ -8,7 +8,7 @@ interface ModuleMetadata {
   ModuleDescription: string;
   ModuleName: string;
   ModulePageUrl: string;
-  OwnerId: number;
+  OwnerId: string;
   Rating: number;
   Ratings: number;
   RatingSum: number;

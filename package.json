@@ -2,6 +2,8 @@
   "name": "ModuleRegistry",
   "version": "1.0.0",
   "dependencies": {
+    "@aws-sdk/util-dynamodb": "^3.470.0",
+    "aws-sdk": "^2.1515.0",
     "node-fetch": "^2.6.6",
     "tweetnacl": "^1.0.3"
   },
