@@ -1,6 +1,5 @@
 import MessageComponentInteractionData from './incoming/messageComponentInteractionData';
 import InteractionResponse from './outgoing/interactionResponse';
-import GuildMember from './guildMember';
 import Message from './outgoing/message';
 import { InteractionCallbackType } from './outgoing/interactionCallbackType';
 import RequestHelper from './outgoing/requestHelper';

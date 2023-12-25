@@ -50,4 +50,27 @@ export default class ModuleRegistry {
 
     return Converter.unmarshall(data.Item) as ModuleMetadata;
   }
+
+  async UpdateModule(meta: ModuleMetadata): Promise<void> {
+    await this.dynamoDb
+      .updateItem({
+        TableName: 'VRCFT-Module-Entries',
+        Key: {
+          ModuleId: { S: meta.ModuleId },
+        },
+        UpdateExpression:
+          'SET #version = :version, #downloadUrl = :downloadUrl, #dllName = :dllName',
+        ExpressionAttributeNames: {
+          '#version': 'Version',
+          '#downloadUrl': 'DownloadUrl',
+          '#dllName': 'DllFilename',
+        },
+        ExpressionAttributeValues: {
+          ':version': { S: meta.Version },
+          ':downloadUrl': { S: meta.DownloadUrl },
+          ':dllName': { S: meta.DllFileName },
+        },
+      })
+      .promise();
+  }
 }

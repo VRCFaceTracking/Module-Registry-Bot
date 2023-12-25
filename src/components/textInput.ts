@@ -23,6 +23,7 @@ export default class TextInput extends Component {
     maxLength: number,
     style: TextInputStyle,
     required: boolean = true,
+    placeholder: string | null = null,
   ) {
     super();
     this.type = ComponentType.TextInput;
@@ -32,5 +33,8 @@ export default class TextInput extends Component {
     this.max_length = maxLength;
     this.style = style;
     this.required = required;
+    if (placeholder != null) {
+      this.placeholder = placeholder;
+    }
   }
 }
