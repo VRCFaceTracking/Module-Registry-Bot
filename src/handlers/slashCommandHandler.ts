@@ -6,6 +6,7 @@ import ModuleRegistry from '../moduleRegistry';
 import SelectMenu from '../components/selectMenu';
 import Message from '../outgoing/message';
 import ActionRow from '../components/actionRow';
+import Troubleshooter from '../troubleshooter';
 
 export default class SlashCommandHandler {
   public static async handleCommand(
@@ -36,6 +37,12 @@ export default class SlashCommandHandler {
         return new InteractionResponse(
           InteractionCallbackType.ChannelMessageWithSource,
           msg,
+        );
+      case 'troubleshoot':
+        const troubleshooter = new Troubleshooter(command.name + '_');
+        return new InteractionResponse(
+          InteractionCallbackType.ChannelMessageWithSource,
+          troubleshooter.getNextMsg(),
         );
     }
 

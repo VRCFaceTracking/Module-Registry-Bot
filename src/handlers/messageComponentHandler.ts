@@ -11,6 +11,7 @@ import ActionRow from '../components/actionRow';
 import Modal from '../components/modal';
 import TextInput, { TextInputStyle } from '../components/textInput';
 import SubmissionRegistry from '../submissionRegistry';
+import Troubleshooter from '../troubleshooter';
 
 export default class MessageComponentHandler {
   public static async handleInteraction(
@@ -30,6 +31,14 @@ export default class MessageComponentHandler {
     const moduleRegistry = new ModuleRegistry();
 
     if (component.component_type == ComponentType.Button) {
+      if (component.custom_id.startsWith('troubleshoot_')) {
+        const troubleshooter = new Troubleshooter(component.custom_id);
+        return new InteractionResponse(
+          InteractionCallbackType.ChannelMessageWithSource,
+          troubleshooter.getNextMsg(),
+        );
+      }
+
       if (component.custom_id.startsWith('updatemodule_')) {
         const moduleId = component.custom_id.replace('updatemodule_', '');
         const moduleData = await moduleRegistry.GetModule(moduleId);

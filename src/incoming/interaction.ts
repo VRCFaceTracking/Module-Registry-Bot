@@ -38,7 +38,6 @@ export default class Interaction {
   public guildLocale?: string;
 
   constructor(body: any) {
-    console.log(body);
     this.id = body.id;
     this.applicationId = body.application_id;
     this.type = body.type;
