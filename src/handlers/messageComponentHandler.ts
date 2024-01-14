@@ -127,7 +127,7 @@ export default class MessageComponentHandler {
         const moduleId = (component.values as string[])[0];
         const moduleObject = await moduleRegistry.GetModule(moduleId);
 
-        if (moduleObject.OwnerId !== interaction.member.user.id) {
+        if (moduleObject.OwnerId !== interaction.user.id) {
           const msg = new Message(true, 'Weird. You do not own this module...');
           return new InteractionResponse(
             InteractionCallbackType.ChannelMessageWithSource,

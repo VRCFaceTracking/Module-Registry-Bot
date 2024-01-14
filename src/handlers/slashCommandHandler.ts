@@ -18,7 +18,7 @@ export default class SlashCommandHandler {
       case 'listusermodules':
         const moduleRegistry = new ModuleRegistry();
         const ownedModules = await moduleRegistry.GetAllOwnedModules(
-          interaction.member.user.id.toString(),
+          interaction.user.id.toString(),
         );
 
         // Create a dropdown selector thingy
