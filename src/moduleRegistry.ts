@@ -63,7 +63,7 @@ export default class ModuleRegistry {
         ExpressionAttributeNames: {
           '#version': 'Version',
           '#downloadUrl': 'DownloadUrl',
-          '#dllName': 'DllFilename',
+          '#dllName': 'DllFileName',
         },
         ExpressionAttributeValues: {
           ':version': { S: meta.Version },
