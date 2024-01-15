@@ -24,10 +24,14 @@ export default class SlashCommandHandler {
         // Create a dropdown selector thingy
         const selectMenu = new SelectMenu('moduleselectmenu', 1, 1);
         ownedModules.forEach((module) => {
+          const truncatedStr =
+            module.ModuleDescription.length > 100
+              ? module.ModuleDescription.slice(0, 99)
+              : module.ModuleDescription;
           selectMenu.addOption(
             module.ModuleName,
             module.ModuleId,
-            module.ModuleDescription,
+            truncatedStr,
           );
         });
 
