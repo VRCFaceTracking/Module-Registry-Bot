@@ -25,7 +25,7 @@ export default class SubmissionRegistry {
   ): Promise<ModuleSubmission> {
     const data = await this.dynamoDb
       .getItem({
-        TableName: 'VRCFT-Module-Entries',
+        TableName: 'VRCFT-Module-Submissions',
         Key: {
           ModuleId: { S: moduleId },
           Version: { S: version },
@@ -39,7 +39,7 @@ export default class SubmissionRegistry {
   async DeleteSubmission(moduleId: string, version: string): Promise<void> {
     await this.dynamoDb
       .deleteItem({
-        TableName: 'VRCFT-Module-Entries',
+        TableName: 'VRCFT-Module-Submissions',
         Key: {
           ModuleId: { S: moduleId },
           Version: { S: version },
