@@ -11,7 +11,7 @@ export default class Troubleshooter {
 
   constructor(customId: string = null) {
     this.inkFile = fs
-      .readFileSync('vrcft_troubleshooting.ink.json', {
+      .readFileSync('dist/vrcft_troubleshooting.ink.json', {
         encoding: 'utf-8',
       })
       .replace(/^\uFEFF/, '');
